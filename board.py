@@ -1,9 +1,9 @@
 import tkinter as tk
 import time 
+import csv  
 
 window = tk.Tk()
 window.geometry("1000x1000")
-
 
 canvas = tk.Canvas(window, width=1000, height=1000)
 
@@ -51,17 +51,22 @@ canvas.bind("<B1-Motion>", paint)
 canvas.bind("<Button-3>", paint1)
 canvas.bind("<B3-Motion>", paint1)
 
-
-
 def output_grid():
     for row in grid:
         print(row)
     print()
     window.after(5000, output_grid)
-
 window.after(5000, output_grid)
+def submit(event):
+    global pixel_data
+    pixel_data = "".join(str(value) for row in grid for value in row)
 
+    print(pixel_data)
+    window.destroy()
 
-
-
+window.bind("<KeyRelease>", submit)
 window.mainloop()
+
+
+
+    
