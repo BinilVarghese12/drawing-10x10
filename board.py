@@ -2,20 +2,20 @@ import tkinter as tk
 import time 
 
 window = tk.Tk()
-window.geometry("400x400")
+window.geometry("1000x1000")
 
 
-canvas = tk.Canvas(window, width=400, height=400)
+canvas = tk.Canvas(window, width=1000, height=1000)
 
 canvas.pack()
-grid = [[0]*10 for _ in range(10)]
+grid = [[0]*20 for _ in range(20)]
 
-for row in range(10):
-    for column in range(10):
-        x = column * 40
-        y = row * 40
+for row in range(20):
+    for column in range(20):
+        x = column * 50
+        y = row * 50
         canvas.create_rectangle(
-            x, y, x + 40, y + 40,
+            x, y, x + 50, y + 50,
             fill="white",
             outline="black",
             tags=f"cell_{row}_{column}"
@@ -23,10 +23,10 @@ for row in range(10):
 
 
 def paint(event):
-    column = event.x // 40
-    row = event.y // 40
+    column = event.x // 50
+    row = event.y // 50
 
-    if 0 <= row < 10 and 0 <= column < 10:
+    if 0 <= row < 20 and 0 <= column < 20:
         canvas.itemconfig(
             f"cell_{row}_{column}",
             fill="black"
@@ -35,10 +35,10 @@ def paint(event):
         grid[row][column] = 1
 
 def paint1(event):
-    column = event.x // 40
-    row = event.y // 40
+    column = event.x // 50
+    row = event.y // 50
 
-    if 0 <= row < 10 and 0 <= column < 10:
+    if 0 <= row < 20 and 0 <= column < 20:
         canvas.itemconfig(
             f"cell_{row}_{column}",
             fill="white"
@@ -48,8 +48,8 @@ def paint1(event):
 
 canvas.bind("<Button-1>", paint)
 canvas.bind("<B1-Motion>", paint)
-canvas.bind("<Button-2>", paint1)
-canvas.bind("<B2-Motion>", paint1)
+canvas.bind("<Button-3>", paint1)
+canvas.bind("<B3-Motion>", paint1)
 
 
 
