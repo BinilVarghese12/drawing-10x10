@@ -68,5 +68,20 @@ window.bind("<KeyRelease>", submit)
 window.mainloop()
 
 
+pixel_strings = []
+labels = []
+
+with open('pixel_data.csv', 'r') as file:
+    reader = csv.reader(file)
+    for row in reader:
+        pixel_strings.append(row[0].strip())
+        labels.append(row[1])
+
+
+
+print("Pixel Strings:", pixel_strings)
+print("Labels:", labels)
+
+
 
     
