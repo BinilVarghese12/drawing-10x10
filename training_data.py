@@ -70,10 +70,10 @@ window.mainloop()
 num1 = int(input("Enter the number you intended to draw: "))
 
 
-with open('pixel_data.csv', 'w') as file:
+with open('pixel_data.csv', 'a') as file:
     writer = csv.writer(file)
-    writer.writerow(["Pixel Data", "Label"])
-    writer.writerow([pixel_data, num1])
+    writer.writerow([pixel_data,num1])
+
 
 
 
