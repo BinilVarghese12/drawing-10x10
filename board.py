@@ -1,6 +1,7 @@
 import tkinter as tk
 import time 
 import csv  
+from sklearn.svm import SVC
 
 window = tk.Tk()
 window.geometry("1000x1000")
@@ -70,17 +71,33 @@ window.mainloop()
 
 pixel_strings = []
 labels = []
+x= []
+y = []
 
 with open('pixel_data.csv', 'r') as file:
     reader = csv.reader(file)
     for row in reader:
-        pixel_strings.append(row[0].strip())
-        labels.append(row[1])
+        if not row:
+            continue
+        x.append([int(bit) for bit in row[0].strip()])
+        y.append(int(row[1]))
 
 
+model = SVC(kernel = "rbf")
+model.fit(x,y)
 
-print("Pixel Strings:", pixel_strings)
-print("Labels:", labels)
+drawing = [int(bit) for bit in pixel_data]
+prediction = model.predict([drawing])[0]
+print("I predict that you entered a  ", prediction)
+
+learn1 = input("was I correct?:") 
+
+if learn1 =="y":
+    
+    with open('pixel_data.csv', 'a') as file:
+        writer = csv.writer(file)
+        writer.writerow([pixel_data,prediction])
+
 
 
 
